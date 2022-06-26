@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs"); //to hash our passwords && it deals with async methods
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const Goal = require("../models/goalModel");
 
 // @desc    Register user
 // @route   POST api/users
@@ -89,8 +90,14 @@ const getMe = asyncHandler(async (req, res) => {
   //   res.json({ message: "Display user data" });
 });
 
-//Generate token JWT
+const deleteUser = asyncHandler(async (req, res) => {
+  const { _id } = await User.findById(req.user.id);
 
+  await User.remove();
+  res.json({ message: "User deleted" });
+});
+
+//Generate token JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     //.sign({payload on which we generate token}, jwt-secret, how many days after it will expire)
@@ -102,4 +109,5 @@ module.exports = {
   registerUser,
   loginUser,
   getMe,
+  deleteUser,
 };

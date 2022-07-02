@@ -80,20 +80,21 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   GET api/users/me
 // @access  Public
 const getMe = asyncHandler(async (req, res) => {
-  const { _id, name, email } = await User.findById(req.user.id); //Since it goes through protect function first, we can now access id from req.user
+  res.status(200).json(req.user); //We get the user data from req.user
+  // const { _id, name, email } = await User.findById(req.user.id); //Since it goes through protect function first, we can now access id from req.user
 
-  res.status(200).json({
-    id: _id,
-    name,
-    email,
-  });
+  // res.status(200).json({
+  //   id: _id,
+  //   name,
+  //   email,
+  // });
   //   res.json({ message: "Display user data" });
 });
 
 const deleteUser = asyncHandler(async (req, res) => {
-  const { _id } = await User.findById(req.user.id);
+  await Goal.deleteMany({ user : req.user.id });
+  await User.findByIdAndDelete(req.user.id);
 
-  await User.remove();
   res.json({ message: "User deleted" });
 });
 

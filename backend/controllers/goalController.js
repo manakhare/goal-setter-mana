@@ -39,24 +39,24 @@ const updateGoal = asyncHandler(async (req, res) => {
   }
 
   //Get user who's goal we have to update... this ensures that only the user can update his goal
-  const user = await User.findById(req.user.id); // we have our id stored (after decoding the token) in req.user in authMiddleware
+  // const user = await User.findById(req.user.id); // we have our id stored (after decoding the token) in req.user in authMiddleware
 
   //Check for user
-  if (!user) {
+  if (!req.user) {
     res.status(401); //not authorised
     throw new Error("User not found!");
   }
 
   //Ensure that the logged in user matches the goal user
-  if (goal.user.toString() !== user.id) {
+  if (goal.user.toString() !== req.user.id) {
     res.status(401); //not authorised
     throw new Error("User not authorized");
   }
-  
+
   const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {
     new: true, //creates the goal if it isn't there
   });
-  
+
   res.status(200).json(updatedGoal);
 });
 
@@ -64,26 +64,33 @@ const updateGoal = asyncHandler(async (req, res) => {
 // @route   DELETE api/goals
 // @access  Private
 const deleteGoal = asyncHandler(async (req, res) => {
-  const goal = Goal.findById(req.params.id);
-  
+  const goal = await Goal.findById(req.params.id);
+
+  console.log(goal);
+  // console.log(req.params.id);
+  // console.log(req.user.id);
+
   if (!goal) {
     res.status(400);
     throw new Error("Goal not found!");
   }
-  
+
+  console.log(req.user);
   //Check for user
-  if (!user) {
+  if (!req.user) {
     res.status(401); //not authorised
     throw new Error("User not found!");
   }
-  
+
+  // console.log(goal.user);
+
   //Ensure that the logged in user matches the goal user
-  if (goal.user.toString() !== user.id) {
+  if (goal.user.toString() !== req.user.id) {
     res.status(401); //not authorised
     throw new Error("User not authorized");
   }
 
-  await Goal.remove();
+  await Goal.findByIdAndDelete(req.params.id);
 
   res.status(200).json({ id: req.params.id });
 });

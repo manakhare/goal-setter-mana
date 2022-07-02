@@ -79,6 +79,10 @@ h3 {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 50px;
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0 20px;
 }
 
@@ -86,16 +90,27 @@ h3 {
   color: #828282;
 }
 
-.goals {
+.logo {
+  margin-left: 25px;
+  font-size: 1.6rem;
+  font-weight:600;
+}
+
+/* .goals {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+} */
+
+.goals {
+  display: flex;
+  flex-direction: column;
 }
 
 .goal {
   background-color: #f4f4f4;
   margin: 10px 0;
-  padding: 20px 0 10px;
+  padding: 20px 10px 10px;
   position: relative;
 }
 
@@ -110,7 +125,7 @@ h3 {
 
 .form,
 .content {
-  width: 70%;
+  width: 40%;
   margin: 0 auto;
 }
 
@@ -135,6 +150,13 @@ h3 {
   margin: 0 0 5px 3px;
 }
 
+.bt {
+  margin-right: 30px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-color: #000;
+}
+
 .btn {
   padding: 10px 20px;
   border: 1px solid #000;
@@ -149,6 +171,7 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 25px;
 }
 
 .btn svg {
@@ -177,6 +200,7 @@ h3 {
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 5000;
+  /* width: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;

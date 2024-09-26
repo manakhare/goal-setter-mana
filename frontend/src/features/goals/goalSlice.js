@@ -89,7 +89,7 @@ export const goalSlice = createSlice({
     builder
       .addCase(createGoal.pending, (state) => {
         state.isLoading = true;
-      })
+      }) 
       .addCase(createGoal.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;

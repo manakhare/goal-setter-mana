@@ -39,7 +39,6 @@ const logout = () => {
 
 // Delete user
 const deleteUser = async (token) => {
-  // console.log(userData);
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

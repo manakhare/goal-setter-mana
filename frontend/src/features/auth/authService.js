@@ -33,7 +33,6 @@ const login = async (userData) => {
 //Logout user
 const logout = () => {
   localStorage.removeItem("user");
-
   // we can also do this using http server and cookie... this is just the basic way to do it
 };
 

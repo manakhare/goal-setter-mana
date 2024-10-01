@@ -2,11 +2,14 @@
 
 import axios from "axios";
 
-const API_URL = "/api/users/";
+// const API_URL = process.env.API_URL + "/api/users/";
+const API_URL = `${process.env.BACKEND_API_URL}/api/users`;
+console.log(API_URL);
 
 // Register user
 const register = async (userData) => {
   //User gets passed in the userData
+  console.log(API_URL);
   const response = await axios.post(API_URL, userData); //This will make the request and put the response in the response variable
 
   if (response.data) {
@@ -20,12 +23,12 @@ const register = async (userData) => {
 // login user
 const login = async (userData) => {
   //User gets passed in the userData
-  const response = await axios.post(API_URL + "login", userData); //This will make the request and put the response in the response variable
+  console.log(API_URL + "login");
 
+  const response = await axios.post(API_URL + "login", userData); //This will make the request and put the response in the response variable
   if (response.data) {
     // Axios inputs the data into the object data
     localStorage.setItem("user", JSON.stringify(response.data)); // this will include our token
-
     return response.data;
   }
 };

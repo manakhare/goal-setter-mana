@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/goals/";
+const API_URL = process.env.API_URL + "/api/goals/";
 
 //Create new goals
 const createGoal = async (goalData, token) => {
@@ -48,7 +48,7 @@ const deleteGoal = async (goalId, token) => {
 
   console.log(config);
   const response = await axios
-    .delete(API_URL + goalId, config )
+    .delete(API_URL + goalId, config)
     .catch((err) => console.error(err));
   console.log(response);
   return response.data; //returns the array;

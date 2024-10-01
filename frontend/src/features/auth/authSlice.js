@@ -46,6 +46,8 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
     return await authService.login(user); //returns the payload that comes back to the register function (in addCase isfulfilled)
   } catch (error) {
+    console.log(error);
+
     const message =
       (error.response && error.response.data && error.response.data.message) ||
       error.message ||

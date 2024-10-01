@@ -192,12 +192,20 @@ h3 {
   transform: scale(0.98);
 }
 
+.error-msg {
+  font-weight: 400;
+  color: red;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
 .loadingSpinnerContainer {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  top: 50%;
+  /* right: 0; */
+  /* bottom: 0; */
+  left: 50%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 5000;
   /* width: 100vh; */

@@ -15,8 +15,8 @@ function Login() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
 
-  //Destruct the formData
   const { email, password } = formData;
 
   // Initialize
@@ -31,11 +31,13 @@ function Login() {
   // It takes a dependencies array that will fire off user effect if any of them changes
   useEffect(() => {
     if (isError) {
+      setError("Please register first!");
       toast.error(message);
     }
 
     if (isSuccess || user) {
       //if the process is successful and the user is logged in, we will redirect them to the dashboard
+      setError("");
       navigate("/");
     }
 
@@ -78,6 +80,7 @@ function Login() {
 
       <section className="form">
         <form onSubmit={onSubmit}>
+          {error.length > 0 ? <div className="error-msg">{error}</div> : <></>}
           <div className="form-group">
             <input
               type="email"

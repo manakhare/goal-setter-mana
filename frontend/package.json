@@ -1,7 +1,6 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "proxy": "https://vercel.com/manas-projects-94e6f6b3/goal-setter-mana-r8wy/GE3JDg48UNA6j8Bqf1ZDg5SHYkLR",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",

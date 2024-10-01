@@ -92,7 +92,7 @@ const getMe = asyncHandler(async (req, res) => {
 });
 
 const deleteUser = asyncHandler(async (req, res) => {
-  await Goal.deleteMany({ user : req.user.id });
+  await Goal.deleteMany({ user: req.user.id });
   await User.findByIdAndDelete(req.user.id);
 
   res.json({ message: "User deleted" });
